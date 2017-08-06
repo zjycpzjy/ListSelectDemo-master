@@ -47,6 +47,12 @@ public class ListAdapter extends BaseAdapter {
         return lists.get(i);
     }
 
+    public void clearAdapter(){
+        if(lists != null && lists.size() > 0 ){
+            lists.clear();
+        }
+        notifyDataSetChanged();
+    }
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         Holder holder;
@@ -60,6 +66,11 @@ public class ListAdapter extends BaseAdapter {
             holder = (Holder)view.getTag();
         }
         holder.checkedTextView.setText(itemBean.getValue());
+        if(itemBean.isSelected()){
+            holder.checkedTextView.setChecked(true);
+        }else{
+            holder.checkedTextView.setChecked(false);
+        }
         return view;
     }
 
